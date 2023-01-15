@@ -29,7 +29,45 @@ let cancel = setInterval(incrementSeconds, 1000);
 
 // Manually increment and decrement the counter using the plus and minus buttons.
 
+let minusButton = document.getElementById("minus");
+minusButton.addEventListener("click", minusClick)
+
+function minusClick() {
+  seconds --;
+}
+
+let plusButton = document.getElementById("plus");
+plusButton.addEventListener("click", plusClick)
+
+function plusClick() {
+  seconds ++;
+}
+
 // "Like" an individual number of the counter. I should see the count of the number of "likes" associated with that number displayed.
+
+let likeButton = document.getElementById("heart");
+likeButton.addEventListener("click", handleLikes)
+
+let likeCounter = []
+
+function handleLikes() {
+  let currentCount = counter.innerText;
+  if (likeCounter.includes(currentCount)) {
+// Find object in array and increment likeCount
+
+  } else {
+  likeCounter.push({
+    currentCount: `${currentCount}`, 
+    likeCount: 1})
+};
+
+console.log(likeCounter);
+
+  let likesList = document.getElementsByClassName("likes");
+  const li = document.createElement("li");
+  li.innerHTML = `${currentCount} has been liked 1 time`;
+  likesList[0].appendChild(li); 
+}
 
 // Pause the counter, which should:
 // pause the counter
