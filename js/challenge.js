@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  timer;
+});
 
 // Leave comments on my gameplay, such as: "Wow, what a fun game this is."
 
@@ -82,27 +84,32 @@ console.log(likeCounter);
 let pauseButton = document.getElementById("pause");
 pauseButton.addEventListener("click", handleToggle);
 
+let isPaused = true;
+
 function handleToggle() {
-if (pauseButton.value === "ON") {
-  pauseButton.value = "OFF";
+  isPaused ? stopCounter() : resumeCounter();
+};
+
+function stopCounter() {
+  clearTimeout(timer);
+  isPaused = false;
   pauseButton.innerText = "resume";
   plusButton.disabled = true;
   minusButton.disabled = true;
   likeButton.disabled = true;
   submitButton.disabled = true;
-  clearInterval(timer);
+}
 
-} else if (pauseButton.value === "OFF") {
-  pauseButton.value = "ON";
+function resumeCounter() {
+  setInterval(incrementSeconds, 1000);
+  isPaused = true;
   pauseButton.innerText = "pause";
   plusButton.disabled = false;
   minusButton.disabled = false;
   likeButton.disabled = false;
   submitButton.disabled = false;
-  // setInterval() Restart timer after pause.
-  
 };
-};
+
 
 // disable all buttons except the pause button
 
@@ -110,5 +117,3 @@ if (pauseButton.value === "ON") {
 
 // Click the "restart" button to restart the counter and re-enable the buttons.
 
-
-});
