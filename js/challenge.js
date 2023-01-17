@@ -2,9 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Leave comments on my gameplay, such as: "Wow, what a fun game this is."
 
-    let submitButton = document.getElementById("comment-form");
-    submitButton.addEventListener("submit", handleSubmit);
-  
+let commentForm = document.getElementById("comment-form");
+commentForm.addEventListener("submit", handleSubmit);
+
+let submitButton = document.getElementById("submit");
+
   function handleSubmit(event) {
     let userComment = document.getElementById("comment-input");
     event.preventDefault();
@@ -24,7 +26,12 @@ function incrementSeconds() {
     counter.innerText = seconds;
 }
 
-let cancel = setInterval(incrementSeconds, 1000);
+function decrementSeconds() {
+  seconds -= 1;
+  counter.innerText = seconds;
+}
+
+let timer = setInterval(incrementSeconds, 1000);
 
 
 // Manually increment and decrement the counter using the plus and minus buttons.
@@ -33,14 +40,14 @@ let minusButton = document.getElementById("minus");
 minusButton.addEventListener("click", minusClick)
 
 function minusClick() {
-  seconds --;
+  setTimeout(decrementSeconds);
 }
 
 let plusButton = document.getElementById("plus");
 plusButton.addEventListener("click", plusClick)
 
 function plusClick() {
-  seconds ++;
+  setTimeout(incrementSeconds);
 }
 
 // "Like" an individual number of the counter. I should see the count of the number of "likes" associated with that number displayed.
@@ -71,6 +78,31 @@ console.log(likeCounter);
 
 // Pause the counter, which should:
 // pause the counter
+
+let pauseButton = document.getElementById("pause");
+pauseButton.addEventListener("click", handleToggle);
+
+function handleToggle() {
+if (pauseButton.value === "ON") {
+  pauseButton.value = "OFF";
+  pauseButton.innerText = "resume";
+  plusButton.disabled = true;
+  minusButton.disabled = true;
+  likeButton.disabled = true;
+  submitButton.disabled = true;
+  clearInterval(timer);
+
+} else if (pauseButton.value === "OFF") {
+  pauseButton.value = "ON";
+  pauseButton.innerText = "pause";
+  plusButton.disabled = false;
+  minusButton.disabled = false;
+  likeButton.disabled = false;
+  submitButton.disabled = false;
+  // setInterval() Restart timer after pause.
+  
+};
+};
 
 // disable all buttons except the pause button
 
