@@ -21,7 +21,7 @@ let submitButton = document.getElementById("submit");
 
 // See the timer increment every second once the page has loaded.
 let seconds = 0;
-let counter = document.getElementById("counter");
+const counter = document.getElementById("counter");
 
 function incrementSeconds() {
     seconds += 1;
@@ -33,19 +33,19 @@ function decrementSeconds() {
   counter.innerText = seconds;
 }
 
-let timer = setInterval(incrementSeconds, 1000);
+const timer = setInterval(incrementSeconds, 1000);
 
 
 // Manually increment and decrement the counter using the plus and minus buttons.
 
-let minusButton = document.getElementById("minus");
+const minusButton = document.getElementById("minus");
 minusButton.addEventListener("click", minusClick)
 
 function minusClick() {
   setTimeout(decrementSeconds);
 }
 
-let plusButton = document.getElementById("plus");
+const plusButton = document.getElementById("plus");
 plusButton.addEventListener("click", plusClick)
 
 function plusClick() {
@@ -54,7 +54,7 @@ function plusClick() {
 
 // "Like" an individual number of the counter. I should see the count of the number of "likes" associated with that number displayed.
 
-let likeButton = document.getElementById("heart");
+const likeButton = document.getElementById("heart");
 likeButton.addEventListener("click", handleLikes)
 
 let likeCounter = []
@@ -81,7 +81,7 @@ console.log(likeCounter);
 // Pause the counter, which should:
 // pause the counter
 
-let pauseButton = document.getElementById("pause");
+const pauseButton = document.getElementById("pause");
 pauseButton.addEventListener("click", handleToggle);
 
 let isPaused = true;
@@ -91,7 +91,7 @@ function handleToggle() {
 };
 
 function stopCounter() {
-  clearTimeout(timer);
+  clearInterval(timer);
   isPaused = false;
   pauseButton.innerText = "resume";
   plusButton.disabled = true;
@@ -109,6 +109,7 @@ function resumeCounter() {
   likeButton.disabled = false;
   submitButton.disabled = false;
 };
+
 
 
 // disable all buttons except the pause button
